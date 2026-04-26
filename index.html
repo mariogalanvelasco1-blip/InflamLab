@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="InflamLab — Ciencia rigurosa sobre enfermedades inflamatorias intestinales. Creado por un paciente de colitis ulcerosa de 14 años. Basado en Harvard, Stanford, MIT y Nature.">
+<meta name="keywords" content="Crohn, colitis ulcerosa, EII, enfermedad inflamatoria intestinal, papers, microbioma, biológicos, investigación IBD">
+<meta name="author" content="InflamLab">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="InflamLab — Ciencia para pacientes con EII">
+<meta property="og:description" content="Traducimos los últimos papers de Harvard, Stanford, MIT y Nature sobre EII al lenguaje que mereces. Creado por un paciente de 14 años.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://inflamlab.netlify.app">
+<meta property="og:image" content="https://inflamlab.netlify.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InflamLab — Ciencia para pacientes con EII">
+<meta name="twitter:description" content="Ciencia rigurosa sobre EII explicada por un paciente de 14 años.">
+<title>InflamLab — Ciencia para pacientes con EII</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23080808'/><text y='.9em' font-size='80' x='10' fill='%23ccff00'>I</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "InflamLab",
+"description": "Plataforma de divulgación científica sobre enfermedades inflamatorias intestinales basada en investigación de Harvard, Stanford, MIT y Nature.",
+"url": "https://inflamlab.netlify.app",
+"foundingDate": "2025",
+"founder": {"@type": "Person", "name": "Paciente EII, 14 años"},
+"medicalSpecialty": "Gastroenterology"
+}
+</script>
+<style>
+/* ─── VARIABLES ─── */
+:root {
+--bg: #080808;
+--bg2: #111;
+--bg3: #1a1a1a;
+--white: #f0f0eb;
+--lime: #ccff00;
+--cyan: #00ffcc;
+--pink: #ff2d78;
+--muted: #555;
+--muted2: #333;
+--ff-display: 'Syne', sans-serif;
+--ff-mono: 'DM Mono', monospace;
+--ff-body: 'DM Sans', sans-serif;
+--radius: 2px;
+--transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+.light-mode {
+--bg: #f0f0eb;
+--bg2: #e4e4df;
+--bg3: #d8d8d3;
+--white: #080808;
+--muted: #888;
+--muted2: #ccc;
+}
+
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(–bg);color:var(–white);font-family:var(–ff-body);overflow-x:hidden;transition:background var(–transition),color var(–transition)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(–bg)}
+::-webkit-scrollbar-thumb{background:var(–lime)}
+
+/* ─── CUSTOM CURSOR (desktop only) ─── */
+@media(pointer:fine){
+body{cursor:none}
+.cur{position:fixed;width:10px;height:10px;background:var(–lime);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;mix-blend-mode:difference}
+.cur-ring{position:fixed;width:32px;height:32px;border:1px solid var(–lime);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.18s ease;opacity:0.5;mix-blend-mode:difference}
+.cur.hovered{transform:translate(-50%,-50%) scale(2.5);background:var(–cyan)}
+.cur-ring.hovered{transform:translate(-50%,-50%) scale(1.5);opacity:0.3}
+a,button,.card,.paper-row,.chip{cursor:none}
+}
+
+/* ─── LOADER ─── */
+#loader{position:fixed;inset:0;background:var(–bg);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity 0.6s ease}
+#loader.out{opacity:0;pointer-events:none}
+.loader-logo{font-family:var(–ff-display);font-size:clamp(2rem,6vw,4rem);font-weight:800;letter-spacing:-0.04em}
+.loader-logo span{color:var(–lime)}
+.loader-bar{width:120px;height:2px;background:var(–bg3);position:relative;overflow:hidden}
+.loader-bar::after{content:’’;position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(–lime);animation:barSlide 1.2s ease forwards}
+@keyframes barSlide{to{left:0}}
+
+/* ─── SKIP LINK (a11y) ─── */
+.skip-link{position:fixed;top:-100%;left:20px;background:var(–lime);color:var(–bg);padding:8px 16px;font-family:var(–ff-mono);font-size:0.75rem;z-index:10000;transition:top 0.2s}
+.skip-link:focus{top:20px}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);transition:background var(–transition)}
+.light-mode nav{background:rgba(240,240,235,0.9)}
+.nav-logo{font-family:var(–ff-display);font-weight:800;font-size:1.25rem;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px}
+.nav-logo span{color:var(–lime)}
+.nav-badge{font-family:var(–ff-mono);font-size:0.5rem;background:var(–lime);color:#080808;padding:2px 7px;letter-spacing:0.12em;text-transform:uppercase;border-radius:1px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:var(–ff-mono);font-size:0.68rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;transition:color var(–transition);padding:4px 0;border-bottom:1px solid transparent}
+.nav-links a:hover{color:var(–lime);border-color:var(–lime)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-sw{display:flex;gap:3px}
+.lang-btn{font-family:var(–ff-mono);font-size:0.6rem;padding:5px 8px;border:1px solid var(–muted2);background:none;color:var(–muted);border-radius:var(–radius);transition:all var(–transition)}
+.lang-btn.active,.lang-btn:hover{border-color:var(–lime);color:var(–lime);background:rgba(204,255,0,0.07)}
+.theme-toggle{width:32px;height:32px;border:1px solid var(–muted2);background:none;color:var(–muted);border-radius:var(–radius);font-size:0.85rem;display:flex;align-items:center;justify-content:center;transition:all var(–transition)}
+.theme-toggle:hover{border-color:var(–lime);color:var(–lime)}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(–white);transition:all var(–transition);border-radius:1px}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:64px;left:0;right:0;background:var(–bg2);border-bottom:1px solid var(–muted2);padding:20px 40px 28px;display:none;flex-direction:column;gap:16px;z-index:199}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(–ff-mono);font-size:0.8rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid var(–muted2);transition:color var(–transition)}
+.mobile-menu a:hover{color:var(–lime)}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 40px 80px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(204,255,0,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(204,255,0,0.025) 1px,transparent 1px);background-size:64px 64px;animation:gridMove 30s linear infinite}
+@keyframes gridMove{to{background-position:0 64px}}
+.hero-orb{position:absolute;width:60vw;height:60vw;max-width:700px;max-height:700px;border-radius:50%;background:radial-gradient(circle,rgba(204,255,0,0.07) 0%,transparent 65%);top:-20%;right:-10%;animation:orbFloat 12s ease-in-out infinite;pointer-events:none}
+@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.hero-eyebrow{font-family:var(–ff-mono);font-size:0.68rem;color:var(–lime);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;opacity:0;animation:up 0.7s 0.3s both}
+.hero-eyebrow::before{content:’’;width:28px;height:1px;background:var(–lime)}
+.hero-h1{font-family:var(–ff-display);font-weight:800;font-size:clamp(2.6rem,7vw,6.5rem);line-height:0.93;letter-spacing:-0.04em;margin-bottom:28px;opacity:0;animation:up 0.7s 0.45s both}
+.hero-h1 .hl{color:var(–lime)}
+.hero-p{font-size:1rem;color:var(–muted);max-width:480px;line-height:1.8;margin-bottom:40px;opacity:0;animation:up 0.7s 0.6s both}
+.hero-p strong{color:var(–white)}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:up 0.7s 0.75s both}
+.hero-stats{display:flex;gap:40px;margin-top:64px;opacity:0;animation:up 0.7s 0.9s both;flex-wrap:wrap}
+.stat-n{font-family:var(–ff-display);font-size:2rem;font-weight:800;color:var(–lime);line-height:1}
+.stat-l{font-family:var(–ff-mono);font-size:0.58rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── BUTTONS ─── */
+.btn{font-family:var(–ff-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;padding:13px 24px;border:none;display:inline-flex;align-items:center;gap:8px;border-radius:var(–radius);transition:all var(–transition);position:relative;overflow:hidden}
+.btn::after{content:’’;position:absolute;inset:0;opacity:0;transition:opacity var(–transition)}
+.btn:active{transform:scale(0.97)}
+.btn-lime{background:var(–lime);color:#080808}
+.btn-lime::after{background:var(–cyan)}
+.btn-lime:hover::after{opacity:1}
+.btn-lime:hover{box-shadow:0 0 20px rgba(204,255,0,0.3)}
+.btn span{position:relative;z-index:1}
+.btn-outline{background:none;color:var(–white);border:1px solid var(–muted2)}
+.btn-outline:hover{border-color:var(–white);background:rgba(255,255,255,0.05)}
+
+/* ─── TICKER ─── */
+.ticker{background:var(–lime);color:#080808;padding:9px 0;overflow:hidden;white-space:nowrap;user-select:none}
+.ticker-track{display:inline-flex;animation:tick 40s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{font-family:var(–ff-mono);font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0 36px}
+.ticker-item::after{content:‘◆’;margin-left:36px;opacity:0.4}
+
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SEARCH ─── */
+.search-section{padding:56px 40px 40px;max-width:860px;margin:0 auto}
+.s-label{font-family:var(–ff-mono);font-size:0.6rem;color:var(–muted);letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:10px}
+.s-row{position:relative}
+#searchInput{width:100%;background:var(–bg2);border:1px solid var(–muted2);padding:17px 52px 17px 20px;font-family:var(–ff-mono);font-size:0.9rem;color:var(–white);outline:none;transition:all var(–transition);border-radius:var(–radius)}
+#searchInput::placeholder{color:var(–muted)}
+#searchInput:focus{border-color:var(–lime);box-shadow:0 0 0 1px var(–lime),0 0 20px rgba(204,255,0,0.08)}
+.s-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(–lime);font-size:1rem;pointer-events:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{font-family:var(–ff-mono);font-size:0.6rem;padding:5px 11px;border:1px solid var(–muted2);color:var(–muted);background:none;border-radius:var(–radius);transition:all var(–transition)}
+.chip:hover,.chip.active-chip{border-color:var(–lime);color:var(–lime);background:rgba(204,255,0,0.06)}
+#searchClear{display:none;font-family:var(–ff-mono);font-size:0.6rem;color:var(–muted);background:none;border:none;padding:5px;margin-left:4px}
+#searchClear:hover{color:var(–white)}
+
+/* ─── MAIN ─── */
+.main{max-width:1360px;margin:0 auto;padding:56px 40px 100px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(–muted2);padding-bottom:14px;margin-bottom:32px}
+.sec-title{font-family:var(–ff-display);font-size:1.5rem;font-weight:800;letter-spacing:-0.03em}
+.sec-meta{font-family:var(–ff-mono);font-size:0.58rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase}
+.no-results{font-family:var(–ff-mono);font-size:0.8rem;color:var(–muted);padding:48px;text-align:center;grid-column:1/-1;border:1px dashed var(–muted2)}
+
+/* ─── CARDS ─── */
+.featured-grid{display:grid;grid-template-columns:2fr 1fr;gap:2px;margin-bottom:64px}
+.side-col{display:flex;flex-direction:column;gap:2px}
+.card{background:var(–bg2);padding:28px;border:1px solid transparent;transition:all var(–transition);position:relative;overflow:hidden}
+.card::before{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,rgba(204,255,0,0.04),transparent);opacity:0;transition:opacity var(–transition)}
+.card:hover{border-color:rgba(204,255,0,0.22);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.card:hover::before{opacity:1}
+.card:active{transform:translateY(0) scale(0.99)}
+.card-cat{font-family:var(–ff-mono);font-size:0.56rem;color:var(–lime);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-cat::before{content:’’;width:16px;height:1px;background:var(–lime)}
+.card-title{font-family:var(–ff-display);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:10px;transition:color var(–transition)}
+.card:hover .card-title{color:var(–lime)}
+.card.big .card-title{font-size:1.45rem}
+.card.sm .card-title{font-size:0.92rem}
+.card-excerpt{font-size:0.85rem;color:var(–muted);line-height:1.75;margin-bottom:18px}
+.card-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card-img{width:100%;aspect-ratio:16/9;background:var(–bg3);margin-bottom:20px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;loading:lazy}
+.card:hover .card-img img{transform:scale(1.03)}
+.card-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.dna{width:44px;height:44px;position:relative}
+.dna div{position:absolute;border-radius:50%;border:1px solid;animation:spin 4s linear infinite}
+.dna div:nth-child(1){inset:0;border-color:rgba(204,255,0,0.3)}
+.dna div:nth-child(2){inset:10px;border-color:rgba(0,255,204,0.3);animation-duration:3s;animation-direction:reverse}
+.dna div:nth-child(3){inset:20px;border-color:rgba(255,45,120,0.3);animation-duration:2s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:64px}
+
+/* share buttons */
+.share-btns{display:flex;gap:6px;margin-top:12px}
+.share-btn{font-family:var(–ff-mono);font-size:0.55rem;padding:4px 9px;border:1px solid var(–muted2);color:var(–muted);background:none;border-radius:var(–radius);transition:all var(–transition)}
+.share-btn:hover{border-color:var(–lime);color:var(–lime)}
+
+/* cat filter */
+.cat-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+
+/* ─── SOURCE BADGES ─── */
+.badge{font-family:var(–ff-mono);font-size:0.56rem;padding:3px 9px;border:1px solid;border-radius:var(–radius);letter-spacing:0.06em;white-space:nowrap}
+.bh{border-color:rgba(204,255,0,0.4);color:var(–lime)}
+.bs{border-color:rgba(0,255,204,0.4);color:var(–cyan)}
+.bm{border-color:rgba(255,45,120,0.4);color:var(–pink)}
+.bn{border-color:rgba(255,255,255,0.2);color:var(–white)}
+.bi{border-color:rgba(204,255,0,0.5);color:var(–lime);background:rgba(204,255,0,0.08)}
+
+/* ─── PAPERS TABLE ─── */
+.papers-section{margin-bottom:64px}
+.paper-row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(–muted2);transition:all var(–transition)}
+.paper-row:hover{background:rgba(255,255,255,0.02);padding-left:10px}
+.paper-row:hover .paper-t{color:var(–lime)}
+.paper-n{font-family:var(–ff-display);font-size:2.2rem;font-weight:800;color:rgba(255,255,255,0.05);line-height:1}
+.paper-t{font-family:var(–ff-display);font-size:0.9rem;font-weight:700;margin-bottom:4px;transition:color var(–transition)}
+.paper-au{font-family:var(–ff-mono);font-size:0.6rem;color:var(–muted)}
+
+/* ─── UPLOAD ─── */
+.upload-zone{border:1px dashed var(–muted2);padding:56px 40px;text-align:center;background:var(–bg2);transition:all var(–transition);margin-bottom:64px;position:relative;overflow:hidden}
+.upload-zone:hover{border-color:var(–lime);background:rgba(204,255,0,0.02)}
+#fileInput{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:2}
+.up-icon{font-size:2rem;margin-bottom:12px}
+.up-t{font-family:var(–ff-display);font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.up-s{font-family:var(–ff-mono);font-size:0.65rem;color:var(–muted);letter-spacing:0.08em;margin-bottom:20px}
+#uploadFeedback{display:none;margin-top:16px;background:var(–bg3);border:1px solid rgba(204,255,0,0.3);padding:16px 20px;border-radius:var(–radius)}
+.up-ok{font-family:var(–ff-mono);font-size:0.6rem;color:var(–lime);letter-spacing:0.1em;margin-bottom:4px}
+
+/* ─── ABOUT ─── */
+.about-strip{background:var(–lime);color:#080808;display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:70px 40px}
+.about-h{font-family:var(–ff-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1;letter-spacing:-0.04em}
+.about-p{font-size:0.9rem;line-height:1.85;color:rgba(0,0,0,0.65)}
+.about-p strong{color:#080808}
+
+/* ─── DISCLAIMER ─── */
+.disclaimer{background:var(–bg3);border-left:3px solid var(–pink);padding:20px 28px;margin:40px 0;border-radius:var(–radius)}
+.disclaimer-title{font-family:var(–ff-mono);font-size:0.6rem;color:var(–pink);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px}
+.disclaimer-text{font-size:0.8rem;color:var(–muted);line-height:1.7}
+
+/* ─── NEWSLETTER ─── */
+.nl-section{background:var(–bg2);padding:70px 40px;text-align:center;position:relative;overflow:hidden}
+.nl-section::before{content:’’;position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(204,255,0,0.05) 0%,transparent 65%);pointer-events:none}
+.nl-h{font-family:var(–ff-display);font-size:1.9rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:6px}
+.nl-s{font-family:var(–ff-mono);font-size:0.68rem;color:var(–muted);letter-spacing:0.06em;margin-bottom:28px}
+.nl-form{display:flex;max-width:460px;margin:0 auto;border-radius:var(–radius);overflow:hidden}
+.nl-input{flex:1;background:var(–bg);border:1px solid var(–muted2);border-right:none;padding:13px 18px;font-family:var(–ff-mono);font-size:0.78rem;color:var(–white);outline:none;transition:border-color var(–transition)}
+.nl-input:focus{border-color:var(–lime)}
+.nl-input::placeholder{color:var(–muted)}
+.nl-btn{background:var(–lime);color:#080808;border:none;padding:13px 20px;font-family:var(–ff-mono);font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:background var(–transition);white-space:nowrap}
+.nl-btn:hover{background:var(–cyan)}
+.nl-msg{font-family:var(–ff-mono);font-size:0.65rem;margin-top:10px;min-height:18px;transition:all var(–transition)}
+.nl-msg.ok{color:var(–lime)}
+.nl-msg.err{color:var(–pink)}
+
+/* ─── FOOTER ─── */
+footer{background:var(–bg2);padding:60px 40px 36px;border-top:1px solid var(–muted2)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.f-logo{font-family:var(–ff-display);font-size:1.5rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px}
+.f-logo span{color:var(–lime)}
+.f-desc{font-size:0.8rem;color:var(–muted);line-height:1.75;max-width:250px}
+.f-col-t{font-family:var(–ff-mono);font-size:0.58rem;color:var(–muted);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:16px}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.f-links a{font-size:0.82rem;color:var(–white);transition:color var(–transition)}
+.f-links a:hover{color:var(–lime)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(–muted2);font-family:var(–ff-mono);font-size:0.58rem;color:var(–muted);flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(–lime)}
+
+/* ─── COOKIE BANNER ─── */
+#cookieBanner{position:fixed;bottom:0;left:0;right:0;background:var(–bg2);border-top:1px solid var(–muted2);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:500;flex-wrap:wrap;transform:translateY(100%);transition:transform var(–transition)}
+#cookieBanner.show{transform:translateY(0)}
+.cookie-text{font-family:var(–ff-mono);font-size:0.65rem;color:var(–muted);max-width:600px;line-height:1.6}
+.cookie-btns{display:flex;gap:8px;flex-shrink:0}
+.cookie-accept{background:var(–lime);color:#080808;border:none;font-family:var(–ff-mono);font-size:0.65rem;padding:8px 16px;letter-spacing:0.08em;text-transform:uppercase;transition:background var(–transition)}
+.cookie-accept:hover{background:var(–cyan)}
+.cookie-reject{background:none;border:1px solid var(–muted2);color:var(–muted);font-family:var(–ff-mono);font-size:0.65rem;padding:8px 16px;letter-spacing:0.08em;text-transform:uppercase;transition:all var(–transition)}
+.cookie-reject:hover{border-color:var(–white);color:var(–white)}
+
+/* ─── ADMIN ─── */
+.admin-fab{position:fixed;bottom:80px;right:28px;z-index:300;background:var(–lime);color:#080808;border:none;font-family:var(–ff-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 16px;border-radius:var(–radius);transition:all var(–transition);display:flex;align-items:center;gap:6px;box-shadow:0 4px 20px rgba(204,255,0,0.25)}
+.admin-fab:hover{background:var(–cyan);box-shadow:0 4px 20px rgba(0,255,204,0.25)}
+.admin-panel{position:fixed;bottom:128px;right:28px;z-index:300;background:var(–bg2);border:1px solid var(–muted2);padding:24px;width:360px;max-height:78vh;overflow-y:auto;transform:translateY(12px) scale(0.97);opacity:0;pointer-events:none;transition:all var(–transition);transform-origin:bottom right;border-radius:var(–radius);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.admin-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.ap-title{font-family:var(–ff-display);font-size:1rem;font-weight:800;margin-bottom:4px}
+.ap-sub{font-family:var(–ff-mono);font-size:0.58rem;color:var(–muted);letter-spacing:0.08em;margin-bottom:20px}
+.f-label{font-family:var(–ff-mono);font-size:0.58rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:5px}
+.f-in,.f-sel,.f-ta{width:100%;background:var(–bg);border:1px solid var(–muted2);padding:9px 12px;font-family:var(–ff-mono);font-size:0.75rem;color:var(–white);outline:none;margin-bottom:14px;border-radius:var(–radius);transition:border-color var(–transition)}
+.f-in:focus,.f-sel:focus,.f-ta:focus{border-color:var(–lime)}
+.f-ta{resize:vertical;min-height:72px}
+.f-sel{appearance:none;cursor:pointer}
+.ap-submit{width:100%;background:var(–lime);color:#080808;border:none;padding:11px;font-family:var(–ff-mono);font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:background var(–transition);border-radius:var(–radius);margin-top:4px}
+.ap-submit:hover{background:var(–cyan)}
+
+/* ─── MODAL ─── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity var(–transition);backdrop-filter:blur(10px)}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(–bg2);border:1px solid var(–muted2);padding:44px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(16px);transition:transform var(–transition);border-radius:var(–radius)}
+.overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(–muted);font-size:1.2rem;transition:color var(–transition);line-height:1;width:28px;height:28px;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{color:var(–white)}
+.modal-cat{font-family:var(–ff-mono);font-size:0.58rem;color:var(–lime);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px}
+.modal-title{font-family:var(–ff-display);font-size:1.7rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:14px;line-height:1.1}
+.modal-meta{font-family:var(–ff-mono);font-size:0.62rem;color:var(–muted);margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.modal-body{font-size:0.92rem;line-height:1.9;color:rgba(240,240,235,0.8)}
+.modal-body p{margin-bottom:14px}
+.modal-body strong{color:var(–white)}
+.modal-body .blockquote{border-left:2px solid var(–lime);padding-left:16px;color:var(–muted);margin:22px 0;font-style:italic}
+.modal-link{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-family:var(–ff-mono);font-size:0.68rem;color:var(–lime);border-bottom:1px solid rgba(204,255,0,0.3);padding-bottom:2px;transition:border-color var(–transition)}
+.modal-link:hover{border-color:var(–lime)}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(–bg2);border:1px solid var(–lime);color:var(–lime);font-family:var(–ff-mono);font-size:0.68rem;letter-spacing:0.08em;padding:10px 22px;z-index:9000;opacity:0;transition:all var(–transition);pointer-events:none;border-radius:var(–radius);white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── MOBILE ─── */
+@media(max-width:900px){
+nav{padding:0 20px}
+.nav-links{display:none}
+.hamburger{display:flex}
+.mobile-menu{padding:20px}
+.hero{padding:100px 20px 60px}
+.hero-stats{gap:24px}
+.search-section{padding:40px 20px 32px}
+.main{padding:40px 20px 80px}
+.featured-grid{grid-template-columns:1fr}
+.grid3{grid-template-columns:1fr}
+.about-strip{grid-template-columns:1fr;gap:28px;padding:48px 20px}
+.footer-grid{grid-template-columns:1fr 1fr}
+.nl-form{flex-direction:column;border-radius:0}
+.nl-input{border-right:1px solid var(–muted2);border-bottom:none}
+.paper-row{grid-template-columns:44px 1fr}
+.paper-row .badge{display:none}
+.admin-panel{width:calc(100vw - 40px);right:20px;bottom:100px}
+.admin-fab{bottom:20px;right:20px}
+#cookieBanner{padding:16px 20px}
+footer{padding:48px 20px 32px}
+}
+@media(max-width:540px){
+.footer-grid{grid-template-columns:1fr}
+.hero-btns{flex-direction:column}
+.hero-btns .btn{text-align:center;justify-content:center}
+}
+</style>
+
+</head>
+<body>
+
+<!-- SKIP LINK -->
+
+<a href="#main-content" class="skip-link">Saltar al contenido</a>
+
+<!-- CURSOR (desktop) -->
+
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true"></div>
+
+<!-- LOADER -->
+
+<div id="loader" aria-hidden="true" role="presentation">
+<div class="loader-logo">Inflam<span>Lab</span></div>
+<div class="loader-bar"></div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- COOKIE BANNER -->
+
+<div id="cookieBanner" role="region" aria-label="Aviso de cookies">
+<p class="cookie-text">Esta web no usa cookies de seguimiento. Solo usamos cookies esenciales para el funcionamiento básico. <a href="#" style="color:var(--lime)">Política de privacidad</a></p>
+<div class="cookie-btns">
+<button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+<button class="cookie-reject" onclick="acceptCookies()">Cerrar</button>
+</div>
+</div>
+
+<!-- NAV -->
+
+<nav role="navigation" aria-label="Navegación principal">
+<a href="#" class="nav-logo" aria-label="InflamLab inicio">Inflam<span>Lab</span> <span class="nav-badge" aria-label="Versión beta">Beta</span></a>
+<ul class="nav-links" role="list">
+<li><a href="#noticias">Noticias</a></li>
+<li><a href="#papers">Papers</a></li>
+<li><a href="#subir">Subir paper</a></li>
+<li><a href="#sobre">Sobre</a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-sw" role="group" aria-label="Selector de idioma">
+<button class="lang-btn active" onclick="setLang('es',this)" aria-pressed="true">ES</button>
+<button class="lang-btn" onclick="setLang('en',this)" aria-pressed="false">EN</button>
+<button class="lang-btn" onclick="setLang('fr',this)" aria-pressed="false">FR</button>
+</div>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema claro/oscuro" title="Modo claro/oscuro">☀</button>
+<button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menú móvil">
+<a href="#noticias" onclick="closeMenu()">Noticias</a>
+<a href="#papers" onclick="closeMenu()">Papers</a>
+<a href="#subir" onclick="closeMenu()">Subir paper</a>
+<a href="#sobre" onclick="closeMenu()">Sobre</a>
+</div>
+
+<!-- HERO -->
+
+<section class="hero" aria-labelledby="hero-heading">
+<div class="hero-grid" aria-hidden="true"></div>
+<div class="hero-orb" aria-hidden="true"></div>
+<p class="hero-eyebrow" data-i18n="eyebrow">Ciencia dura — Para pacientes reales</p>
+<h1 class="hero-h1" id="hero-heading">
+La ciencia que<br>tu médico no<br>tiene tiempo de<br><span class="hl" data-i18n="hero-hl">explicarte</span>
+</h1>
+<p class="hero-p" data-i18n="hero-p">Traducimos los últimos papers de <strong>MIT, Harvard, Stanford y Nature</strong> sobre enfermedades inflamatorias intestinales al lenguaje que mereces. Sin rodeos. Con rigor.</p>
+<div class="hero-btns">
+<a href="#noticias" class="btn btn-lime"><span data-i18n="btn-explore">Explorar investigaciones →</span></a>
+<a href="#sobre" class="btn btn-outline"><span data-i18n="btn-about">Quién está detrás</span></a>
+</div>
+<div class="hero-stats" aria-label="Estadísticas">
+<div><div class="stat-n" id="statPapers">0</div><div class="stat-l" data-i18n="stat1">Papers analizados</div></div>
+<div><div class="stat-n">5</div><div class="stat-l" data-i18n="stat2">Investigaciones propias</div></div>
+<div><div class="stat-n">14</div><div class="stat-l" data-i18n="stat3">Años del fundador</div></div>
+</div>
+</section>
+
+<!-- TICKER -->
+
+<div class="ticker" aria-hidden="true">
+<div class="ticker-track" id="tickerTrack">
+<span class="ticker-item">Nature 2025 — Microbioma y remisión en Crohn</span>
+<span class="ticker-item">Harvard — Células T reguladoras en EII</span>
+<span class="ticker-item">Stanford — Permeabilidad intestinal y LPS</span>
+<span class="ticker-item">MIT — IA para predicción de brotes</span>
+<span class="ticker-item">ECCO 2025 — Nuevas guías de biológicos</span>
+<span class="ticker-item">Nature Immunology — Microglía e inflamación</span>
+<span class="ticker-item">Nature 2025 — Microbioma y remisión en Crohn</span>
+<span class="ticker-item">Harvard — Células T reguladoras en EII</span>
+<span class="ticker-item">Stanford — Permeabilidad intestinal y LPS</span>
+<span class="ticker-item">MIT — IA para predicción de brotes</span>
+<span class="ticker-item">ECCO 2025 — Nuevas guías de biológicos</span>
+<span class="ticker-item">Nature Immunology — Microglía e inflamación</span>
+</div>
+</div>
+
+<!-- SEARCH -->
+
+<section class="search-section" aria-label="Buscador">
+<span class="s-label" data-i18n="search-label">// Busca cualquier tema — microbioma, biológicos, dieta, brotes...</span>
+<div class="s-row">
+<input type="search" id="searchInput" placeholder="Ej: permeabilidad intestinal, anti-TNF, dieta Crohn..." aria-label="Buscar en InflamLab" autocomplete="off">
+<span class="s-icon" aria-hidden="true">⌕</span>
+</div>
+<div class="chips" role="group" aria-label="Filtros rápidos">
+<button class="chip" onclick="doSearch('microbioma')">Microbioma</button>
+<button class="chip" onclick="doSearch('biológicos')">Biológicos</button>
+<button class="chip" onclick="doSearch('dieta')">Dieta</button>
+<button class="chip" onclick="doSearch('permeabilidad')">Permeabilidad</button>
+<button class="chip" onclick="doSearch('inflamación')">Inflamación</button>
+<button class="chip" onclick="doSearch('remisión')">Remisión</button>
+<button class="chip" onclick="doSearch('jóvenes')">EII en jóvenes</button>
+<button class="chip" onclick="doSearch('')">Ver todo</button>
+<button id="searchClear" onclick="doSearch('')" aria-label="Limpiar búsqueda">✕ Limpiar</button>
+</div>
+</section>
+
+<!-- MAIN -->
+
+<main class="main" id="main-content">
+
+<!-- FEATURED -->
+
+<section id="noticias" aria-labelledby="feat-title">
+<div class="sec-head">
+<h2 class="sec-title" id="feat-title" data-i18n="sec-featured">Destacado</h2>
+<span class="sec-meta" id="updateDate"></span>
+</div>
+<div class="featured-grid" id="featuredGrid"></div>
+</section>
+
+<!-- CAT FILTERS -->
+
+<div class="cat-filters" id="catFilters" role="group" aria-label="Filtrar por categoría"></div>
+
+<!-- RECENT -->
+
+<div class="sec-head" style="margin-top:60px">
+<h2 class="sec-title" data-i18n="sec-recent">Más reciente</h2>
+<span class="sec-meta" data-i18n="sec-recent-meta">// Esta semana</span>
+</div>
+<div class="grid3" id="recentGrid"></div>
+
+<!-- PAPERS -->
+
+<section id="papers" aria-labelledby="papers-title">
+<div class="sec-head">
+<h2 class="sec-title" id="papers-title" data-i18n="sec-papers">Papers indexados</h2>
+<span class="sec-meta" data-i18n="sec-papers-meta">// Base de datos verificada</span>
+</div>
+<div class="papers-section" id="papersTable"></div>
+</section>
+
+<!-- DISCLAIMER -->
+
+<div class="disclaimer reveal" role="note" aria-label="Aviso médico">
+<div class="disclaimer-title">⚕ Aviso médico importante</div>
+<p class="disclaimer-text" data-i18n="disclaimer">El contenido de InflamLab está basado en literatura científica peer-reviewed y tiene carácter exclusivamente informativo. <strong>No sustituye el diagnóstico, tratamiento ni consejo de un profesional médico.</strong> Si tienes síntomas o dudas sobre tu salud, consulta siempre con tu gastroenterólogo o médico de cabecera. InflamLab no tiene ningún conflicto de interés ni recibe financiación de la industria farmacéutica.</p>
+</div>
+
+<!-- UPLOAD -->
+
+<section id="subir" aria-labelledby="upload-title">
+<div class="sec-head">
+<h2 class="sec-title" id="upload-title" data-i18n="sec-upload">Subir paper</h2>
+<span class="sec-meta" data-i18n="sec-upload-meta">// Comparte ciencia relevante</span>
+</div>
+<div class="upload-zone reveal" id="uploadZone" role="region" aria-label="Zona de subida de papers">
+<input type="file" accept=".pdf" id="fileInput" onchange="handleFile(this)" aria-label="Seleccionar PDF">
+<div class="up-icon" aria-hidden="true">⊕</div>
+<h3 class="up-t" data-i18n="upload-t">Arrastra un PDF o haz clic para seleccionar</h3>
+<p class="up-s" data-i18n="upload-s">// Solo PDFs — Papers científicos sobre EII — Fuentes verificadas</p>
+<button class="btn btn-lime" onclick="document.getElementById('fileInput').click()" style="position:relative;z-index:3"><span data-i18n="upload-btn">Seleccionar archivo</span></button>
+</div>
+<div id="uploadFeedback" role="status">
+<div class="up-ok">✓ PAPER RECIBIDO — Pendiente de revisión</div>
+<div id="uploadName" style="font-family:var(--ff-display);font-weight:700;font-size:1rem"></div>
+</div>
+</section>
+
+</main>
+
+<!-- ABOUT -->
+
+<section id="sobre" class="about-strip reveal" aria-labelledby="about-heading">
+<div>
+<h2 class="about-h" id="about-heading" data-i18n="about-h">Hecho por<br>un paciente.<br>No por<br>una empresa.</h2>
+</div>
+<div>
+<p class="about-p" data-i18n="about-p">InflamLab fue creado por un <strong>paciente de colitis ulcerosa de 14 años</strong> que no encontraba lo que buscaba: ciencia real, rigurosa y sin condescendencia.<br><br>Toda la información está basada en investigación de <strong>Harvard, Stanford, MIT, Nature y PubMed</strong>. Ningún contenido está patrocinado. Sin cookies de rastreo. Sin spam.<br><br>Si tienes EII y quieres entender lo que te pasa de verdad, este es tu sitio.</p>
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+
+<section class="nl-section reveal" aria-labelledby="nl-heading">
+<h2 class="nl-h" id="nl-heading" data-i18n="nl-h">Un paper. Una semana. Sin spam.</h2>
+<p class="nl-s" data-i18n="nl-s">// Cada semana, el paper más importante sobre EII explicado en 5 minutos</p>
+<div class="nl-form" role="form" aria-label="Formulario de suscripción">
+<label for="nlEmail" class="sr-only">Tu correo electrónico</label>
+<input type="email" class="nl-input" id="nlEmail" placeholder="tu@email.com" autocomplete="email">
+<button class="nl-btn" onclick="subscribe()" data-i18n="nl-btn">Suscribirme →</button>
+</div>
+<p class="nl-msg" id="nlMsg" aria-live="polite"></p>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+<div class="footer-grid">
+<div>
+<div class="f-logo">Inflam<span>Lab</span></div>
+<p class="f-desc" data-i18n="footer-desc">Ciencia dura sobre EII para pacientes que merecen entender su propia enfermedad. Independiente, riguroso, sin conflictos de interés.</p>
+</div>
+<div>
+<div class="f-col-t">// Contenido</div>
+<ul class="f-links">
+<li><a href="#noticias">Noticias</a></li>
+<li><a href="#papers">Papers indexados</a></li>
+<li><a href="#subir">Subir paper</a></li>
+</ul>
+</div>
+<div>
+<div class="f-col-t">// Comunidad</div>
+<ul class="f-links">
+<li><a href="#sobre">Sobre InflamLab</a></li>
+<li><a href="mailto:hola@inflamlab.org">Contacto</a></li>
+<li><a href="#" onclick="showToast('Newsletter próximamente')">Newsletter</a></li>
+</ul>
+</div>
+<div>
+<div class="f-col-t">// Legal</div>
+<ul class="f-links">
+<li><a href="#" onclick="showToast('Sin cookies de rastreo')">Sin cookies de rastreo</a></li>
+<li><a href="#">Política de privacidad</a></li>
+<li><a href="#">Fuentes y metodología</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2025 InflamLab — Creado por un paciente de colitis ulcerosa de 14 años. No somos médicos. No es consejo médico.</span>
+<span>Fuentes: <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">PubMed</a> · <a href="https://hms.harvard.edu" target="_blank" rel="noopener">Harvard</a> · <a href="https://stanford.edu" target="_blank" rel="noopener">Stanford</a> · <a href="https://web.mit.edu" target="_blank" rel="noopener">MIT</a></span>
+</div>
+</footer>
+
+<!-- ADMIN FAB -->
+
+<button class="admin-fab" onclick="toggleAdmin()" aria-label="Panel de administración" aria-expanded="false" id="adminFab">⊕ Añadir</button>
+
+<!-- ADMIN PANEL -->
+
+<div class="admin-panel" id="adminPanel" role="dialog" aria-label="Panel de administración" aria-modal="true">
+<div class="ap-title">Añadir contenido</div>
+<div class="ap-sub">// Gestiona tu plataforma</div>
+<label class="f-label" for="contentType">Tipo</label>
+<select class="f-sel" id="contentType" onchange="toggleAdminForms()">
+<option value="article">Artículo / Noticia</option>
+<option value="paper">Paper indexado</option>
+</select>
+
+<div id="articleForm">
+<label class="f-label" for="artCat">Categoría</label>
+<input class="f-in" id="artCat" placeholder="Ej: Microbioma, Tratamiento...">
+<label class="f-label" for="artTitle">Título *</label>
+<input class="f-in" id="artTitle" placeholder="Título del artículo">
+<label class="f-label" for="artExcerpt">Extracto *</label>
+<textarea class="f-ta" id="artExcerpt" placeholder="Resumen breve (2-3 líneas)"></textarea>
+<label class="f-label" for="artBody">Contenido completo</label>
+<textarea class="f-ta" id="artBody" placeholder="Texto completo..." style="min-height:100px"></textarea>
+<label class="f-label" for="artSource">Fuente</label>
+<select class="f-sel" id="artSource">
+<option value="harvard">Harvard</option>
+<option value="stanford">Stanford</option>
+<option value="mit">MIT</option>
+<option value="nature">Nature</option>
+<option value="inflamlab">InflamLab Original</option>
+<option value="other">Otra fuente</option>
+</select>
+<label class="f-label" for="artTime">Tiempo de lectura (min)</label>
+<input class="f-in" id="artTime" type="number" value="5" min="1">
+<label class="f-label" for="artUrl">URL del paper (opcional)</label>
+<input class="f-in" id="artUrl" placeholder="https://pubmed.ncbi...">
+<label class="f-label" for="artImg">URL imagen (opcional)</label>
+<input class="f-in" id="artImg" placeholder="https://...">
+<label class="f-label" for="artFeatured">¿Destacado?</label>
+<select class="f-sel" id="artFeatured">
+<option value="0">No — Grid normal</option>
+<option value="1">Sí — Sección principal</option>
+</select>
+</div>
+
+<div id="paperForm" style="display:none">
+<label class="f-label" for="papTitle">Título del paper *</label>
+<input class="f-in" id="papTitle" placeholder="Título completo">
+<label class="f-label" for="papAuthors">Autores y revista *</label>
+<input class="f-in" id="papAuthors" placeholder="Smith J. — Nature, 2025">
+<label class="f-label" for="papSource">Fuente</label>
+<select class="f-sel" id="papSource">
+<option value="harvard">Harvard</option>
+<option value="stanford">Stanford</option>
+<option value="mit">MIT</option>
+<option value="nature">Nature</option>
+</select>
+<label class="f-label" for="papUrl">DOI / URL</label>
+<input class="f-in" id="papUrl" placeholder="https://doi.org/...">
+</div>
+
+<button class="ap-submit" onclick="addContent()">Publicar →</button>
+
+</div>
+
+<!-- ARTICLE MODAL -->
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="closeModal(event)">
+<div class="modal">
+<button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+<div class="modal-cat" id="modalCat"></div>
+<h2 class="modal-title" id="modalTitle"></h2>
+<div class="modal-meta" id="modalMeta"></div>
+<div class="modal-body" id="modalBody"></div>
+<div class="share-btns" style="margin-top:20px">
+<button class="share-btn" onclick="shareArticle('twitter')">Twitter/X</button>
+<button class="share-btn" onclick="shareArticle('whatsapp')">WhatsApp</button>
+<button class="share-btn" onclick="shareArticle('copy')">Copiar enlace</button>
+</div>
+<a href="#" class="modal-link" id="modalLink" target="_blank" rel="noopener" style="display:none">Ver paper original en PubMed →</a>
+</div>
+</div>
+
+<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}</style>
+
+<script>
+// ─── DATA ─────────────────────────────────────────────────────
+const ARTICLES = [];
+const PAPERS = [];
+let currentArticle = null;
+let currentLang = 'es';
+let darkMode = true;
+
+// ─── I18N ─────────────────────────────────────────────────────
+const T = {
+es:{
+eyebrow:'Ciencia dura — Para pacientes reales',
+'hero-hl':'explicarte',
+'hero-p':'Traducimos los últimos papers de <strong>MIT, Harvard, Stanford y Nature</strong> sobre enfermedades inflamatorias intestinales al lenguaje que mereces. Sin rodeos. Con rigor.',
+'btn-explore':'Explorar investigaciones →','btn-about':'Quién está detrás',
+stat1:'Papers analizados',stat2:'Investigaciones propias',stat3:'Años del fundador',
+'search-label':'// Busca cualquier tema — microbioma, biológicos, dieta, brotes...',
+'sec-featured':'Destacado','sec-recent':'Más reciente','sec-recent-meta':'// Esta semana',
+'sec-papers':'Papers indexados','sec-papers-meta':'// Base de datos verificada',
+'sec-upload':'Subir paper','sec-upload-meta':'// Comparte ciencia relevante',
+'upload-t':'Arrastra un PDF o haz clic para seleccionar',
+'upload-s':'// Solo PDFs — Papers científicos sobre EII — Fuentes verificadas',
+'upload-btn':'Seleccionar archivo',
+'about-h':'Hecho por<br>un paciente.<br>No por<br>una empresa.',
+'about-p':'InflamLab fue creado por un <strong>paciente de colitis ulcerosa de 14 años</strong> que no encontraba lo que buscaba: ciencia real, rigurosa y sin condescendencia.<br><br>Toda la información está basada en investigación de <strong>Harvard, Stanford, MIT, Nature y PubMed</strong>. Ningún contenido está patrocinado. Sin cookies de rastreo.<br><br>Si tienes EII y quieres entender lo que te pasa de verdad, este es tu sitio.',
+'nl-h':'Un paper. Una semana. Sin spam.',
+'nl-s':'// Cada semana, el paper más importante sobre EII explicado en 5 minutos',
+'nl-btn':'Suscribirme →',
+'footer-desc':'Ciencia dura sobre EII para pacientes que merecen entender su propia enfermedad. Independiente, riguroso, sin conflictos de interés.',
+disclaimer:'El contenido de InflamLab está basado en literatura científica peer-reviewed y tiene carácter exclusivamente informativo. <strong>No sustituye el diagnóstico, tratamiento ni consejo de un profesional médico.</strong> Consulta siempre con tu gastroenterólogo.'
+},
+en:{
+eyebrow:'Hard science — For real patients',
+'hero-hl':'explain',
+'hero-p':'We translate the latest papers from <strong>MIT, Harvard, Stanford and Nature</strong> on inflammatory bowel disease into the language you deserve. No sugarcoating. Full rigor.',
+'btn-explore':'Explore research →','btn-about':'Who\'s behind this',
+stat1:'Papers analyzed',stat2:'Own research',stat3:'Founder\'s age',
+'search-label':'// Search any topic — microbiome, biologics, diet, flares...',
+'sec-featured':'Featured','sec-recent':'Most recent','sec-recent-meta':'// This week',
+'sec-papers':'Indexed papers','sec-papers-meta':'// Verified database',
+'sec-upload':'Submit paper','sec-upload-meta':'// Share relevant science',
+'upload-t':'Drag a PDF or click to select',
+'upload-s':'// PDFs only — Scientific papers on IBD — Verified sources',
+'upload-btn':'Select file',
+'about-h':'Built by<br>a patient.<br>Not by<br>a company.',
+'about-p':'InflamLab was created by a <strong>14-year-old ulcerative colitis patient</strong> who couldn\'t find what he was looking for: real, rigorous science without condescension.<br><br>All content is based on research from <strong>Harvard, Stanford, MIT, Nature and PubMed</strong>. No sponsored content. No tracking cookies.',
+'nl-h':'One paper. One week. No spam.',
+'nl-s':'// Every week, the most important IBD paper explained in 5 minutes',
+'nl-btn':'Subscribe →',
+'footer-desc':'Hard science on IBD for patients who deserve to understand their own disease.',
+disclaimer:'InflamLab content is based on peer-reviewed scientific literature and is for informational purposes only. <strong>It does not replace medical diagnosis, treatment, or advice.</strong> Always consult your gastroenterologist.'
+},
+fr:{
+eyebrow:'Science rigoureuse — Pour de vrais patients',
+'hero-hl':'expliquer',
+'hero-p':'Nous traduisons les derniers articles de <strong>MIT, Harvard, Stanford et Nature</strong> sur les MICI dans le langage que vous méritez.',
+'btn-explore':'Explorer →','btn-about':'Qui est derrière',
+stat1:'Articles analysés',stat2:'Recherches propres',stat3:'Âge du fondateur',
+'search-label':'// Recherchez n\'importe quel sujet...',
+'sec-featured':'À la une','sec-recent':'Plus récent','sec-recent-meta':'// Cette semaine',
+'sec-papers':'Articles indexés','sec-papers-meta':'// Base de données vérifiée',
+'sec-upload':'Soumettre','sec-upload-meta':'// Partagez de la science',
+'upload-t':'Glissez un PDF ou cliquez','upload-s':'// PDFs uniquement','upload-btn':'Sélectionner',
+'about-h':'Fait par<br>un patient.<br>Pas par<br>une entreprise.',
+'about-p':'InflamLab a été créé par un <strong>patient de 14 ans</strong> atteint de rectocolite hémorragique.',
+'nl-h':'Un article. Une semaine. Pas de spam.','nl-s':'// Chaque semaine','nl-btn':'S\'abonner →',
+'footer-desc':'Science rigoureuse sur les MICI pour des patients qui méritent de comprendre leur maladie.',
+disclaimer:'Le contenu d\'InflamLab est basé sur la littérature scientifique. <strong>Il ne remplace pas l\'avis médical.</strong> Consultez toujours votre gastroentérologue.'
+}
+};
+
+function setLang(lang, btn) {
+currentLang = lang;
+document.documentElement.lang = lang;
+document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')});
+btn.classList.add('active');btn.setAttribute('aria-pressed','true');
+document.querySelectorAll('[data-i18n]').forEach(el=>{
+const k=el.getAttribute('data-i18n');
+if(T[lang][k]!==undefined) el.innerHTML=T[lang][k];
+});
+showToast({es:'Idioma: Español',en:'Language: English',fr:'Langue: Français'}[lang]);
+renderAll(document.getElementById('searchInput').value);
+}
+
+// ─── THEME ────────────────────────────────────────────────────
+function toggleTheme(){
+darkMode=!darkMode;
+document.body.classList.toggle('light-mode',!darkMode);
+document.querySelector('.theme-toggle').textContent=darkMode?'☀':'☾';
+showToast(darkMode?'Modo oscuro':'Modo claro');
+}
+
+// ─── CURSOR ───────────────────────────────────────────────────
+(function(){
+const cur=document.getElementById('cur');
+const ring=document.getElementById('curRing');
+if(!cur)return;
+// Only on pointer:fine devices
+const mq=window.matchMedia('(pointer:fine)');
+if(!mq.matches){cur.style.display='none';ring.style.display='none';return}
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*0.14;ry+=(my-ry)*0.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button,.card,.paper-row,.chip,.upload-zone').forEach(el=>{
+el.addEventListener('mouseenter',()=>{cur.classList.add('hovered');ring.classList.add('hovered')});
+el.addEventListener('mouseleave',()=>{cur.classList.remove('hovered');ring.classList.remove('hovered')});
+});
+})();
+
+// ─── HELPERS ──────────────────────────────────────────────────
+const srcMap={harvard:{cls:'bh',label:'Harvard'},stanford:{cls:'bs',label:'Stanford'},mit:{cls:'bm',label:'MIT'},nature:{cls:'bn',label:'Nature'},inflamlab:{cls:'bi',label:'InflamLab'},other:{cls:'bn',label:'Otro'}};
+function src(s){return srcMap[s]||srcMap.other}
+
+function dnaHTML(){return`<div class="card-img"><div class="card-img-placeholder" aria-hidden="true"><div class="dna"><div></div><div></div><div></div></div></div></div>`}
+
+function cardHTML(a,big=false){
+const imgPart=a.img?`<div class="card-img"><img src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.parentElement.innerHTML='${dnaHTML()}'"></div>`:(big?dnaHTML():'');
+return`<article class="card ${big?'big':'sm'} reveal" onclick="openArticle(${a.id})" role="button" tabindex="0" aria-label="${a.title}" onkeydown="if(event.key==='Enter')openArticle(${a.id})">
+${imgPart}
+<div class="card-cat" aria-label="Categoría: ${a.cat}">${a.cat}</div>
+<h3 class="card-title">${a.title}</h3>
+${(big||!a.img)?`<p class="card-excerpt">${a.excerpt}</p>`:''}
+<div class="card-foot">
+<span class="badge ${src(a.source).cls}" aria-label="Fuente: ${src(a.source).label}">${src(a.source).label}</span>
+<span aria-label="${a.time} minutos de lectura">${a.time} min</span>
+</div>
+</article>`;
+}
+
+// ─── RENDER ───────────────────────────────────────────────────
+function renderAll(filter='',catFilter=''){
+const f=filter.toLowerCase().trim();
+const visible=ARTICLES.filter(a=>{
+const matchSearch=!f||[a.title,a.cat,a.excerpt,a.body].join(' ').toLowerCase().includes(f);
+const matchCat=!catFilter||a.cat===catFilter;
+return matchSearch&&matchCat;
+});
+const featured=visible.filter(a=>a.featured);
+const recent=visible.filter(a=>!a.featured);
+
+// Featured grid
+const fg=document.getElementById('featuredGrid');
+if(!visible.length){
+fg.innerHTML=`<div class="no-results">No se encontraron resultados para "<em>${filter||catFilter}</em>"</div>`;
+}else if(featured.length){
+const main=featured[0];
+const side=featured.slice(1,3);
+fg.innerHTML=cardHTML(main,true)+(side.length?`<div class="side-col">${side.map(a=>cardHTML(a)).join('')}</div>`:'');
+}else fg.innerHTML='';
+
+// Recent grid
+document.getElementById('recentGrid').innerHTML=recent.map(a=>cardHTML(a)).join('')||'';
+
+// Papers
+const fp=f?PAPERS.filter(p=>(p.title+p.authors).toLowerCase().includes(f)):PAPERS;
+document.getElementById('papersTable').innerHTML=fp.length
+?fp.map((p,i)=>`<div class="paper-row reveal" onclick="${p.url?`window.open('${p.url}','_blank')`:'showToast(\'DOI próximamente\')'}" role="button" tabindex="0" aria-label="${p.title}" onkeydown="if(event.key==='Enter')this.click()">
+<div class="paper-n" aria-hidden="true">0${i+1}</div>
+<div><div class="paper-t">${p.title}</div><div class="paper-au">${p.authors}</div></div>
+<span class="badge ${src(p.source).cls}" aria-label="Fuente: ${src(p.source).label}">${src(p.source).label}</span>
+</div>`).join('')
+:`<div class="no-results">${f?`Sin papers para "${filter}"`:'Aún no hay papers indexados. Sé el primero en añadir uno.'}</div>`;
+
+// Stats
+document.getElementById('statPapers').textContent=PAPERS.length;
+document.getElementById('updateDate').textContent='// '+new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+
+// Cat filters
+const cats=[...new Set(ARTICLES.map(a=>a.cat))];
+const cf=document.getElementById('catFilters');
+cf.innerHTML=cats.map(c=>`<button class="chip${catFilter===c?' active-chip':''}" onclick="filterCat('${c}')" aria-pressed="${catFilter===c}">${c}</button>`).join('');
+if(cats.length)cf.innerHTML=`<button class="chip${!catFilter?' active-chip':''}" onclick="filterCat('')" aria-pressed="${!catFilter}">Todo</button>`+cf.innerHTML;
+
+// Reveal
+requestAnimationFrame(()=>observeReveal());
+}
+
+let activeCat='';
+function filterCat(cat){activeCat=cat;renderAll(document.getElementById('searchInput').value,cat)}
+
+// ─── SEARCH ───────────────────────────────────────────────────
+let st;
+document.getElementById('searchInput').addEventListener('input',e=>{
+clearTimeout(st);
+const v=e.target.value;
+document.getElementById('searchClear').style.display=v?'inline-block':'none';
+st=setTimeout(()=>renderAll(v,activeCat),250);
+});
+function doSearch(term){
+document.getElementById('searchInput').value=term;
+document.getElementById('searchClear').style.display=term?'inline-block':'none';
+activeCat='';
+renderAll(term,'');
+document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ─── MODAL ────────────────────────────────────────────────────
+function openArticle(id){
+const a=ARTICLES.find(x=>x.id===id);
+if(!a)return;
+currentArticle=a;
+document.getElementById('modalCat').textContent=a.cat;
+document.getElementById('modalTitle').textContent=a.title;
+document.getElementById('modalMeta').innerHTML=`<span class="badge ${src(a.source).cls}">${src(a.source).label}</span><span>${a.time} min de lectura</span>`;
+document.getElementById('modalBody').innerHTML=a.body||`<p>${a.excerpt}</p>`;
+const ml=document.getElementById('modalLink');
+ml.style.display=a.url?'inline-flex':'none';
+if(a.url)ml.href=a.url;
+document.getElementById('overlay').classList.add('open');
+document.body.style.overflow='hidden';
+document.getElementById('modalTitle').focus();
+}
+function closeModal(e){
+if(e&&e.target!==document.getElementById('overlay')&&!e.target.classList.contains('modal-close'))return;
+document.getElementById('overlay').classList.remove('open');
+document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal({target:document.getElementById('overlay')})}});
+
+// ─── SHARE ────────────────────────────────────────────────────
+function shareArticle(platform){
+const title=currentArticle?currentArticle.title:'InflamLab';
+const url=window.location.href;
+if(platform==='twitter'){window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title+' — InflamLab')}&url=${encodeURIComponent(url)},'_blank'`)}
+else if(platform==='whatsapp'){window.open(`https://wa.me/?text=${encodeURIComponent(title+' '+url)}`,'_blank')}
+else{navigator.clipboard.writeText(url).then(()=>showToast('✓ Enlace copiado')).catch(()=>showToast('Enlace: '+url))}
+}
+
+// ─── ADMIN ────────────────────────────────────────────────────
+function toggleAdmin(){
+const p=document.getElementById('adminPanel');
+const fab=document.getElementById('adminFab');
+const open=p.classList.toggle('open');
+fab.setAttribute('aria-expanded',open);
+}
+function toggleAdminForms(){
+const t=document.getElementById('contentType').value;
+document.getElementById('articleForm').style.display=t==='article'?'':'none';
+document.getElementById('paperForm').style.display=t==='paper'?'':'none';
+}
+function addContent(){
+const type=document.getElementById('contentType').value;
+if(type==='article'){
+const title=document.getElementById('artTitle').value.trim();
+const excerpt=document.getElementById('artExcerpt').value.trim();
+if(!title||!excerpt){showToast('Título y extracto son obligatorios');return}
+const body=document.getElementById('artBody').value.trim();
+ARTICLES.unshift({
+id:Date.now(),
+featured:document.getElementById('artFeatured').value==='1',
+cat:document.getElementById('artCat').value.trim()||'Sin categoría',
+title,excerpt,
+body:body?body.split('\n\n').map(p=>`<p>${p}</p>`).join(''):`<p>${excerpt}</p>`,
+source:document.getElementById('artSource').value,
+time:parseInt(document.getElementById('artTime').value)||5,
+url:document.getElementById('artUrl').value.trim(),
+img:document.getElementById('artImg').value.trim()
+});
+['artCat','artTitle','artExcerpt','artBody','artUrl','artImg'].forEach(id=>document.getElementById(id).value='');
+showToast('✓ Artículo publicado');
+}else{
+const title=document.getElementById('papTitle').value.trim();
+const authors=document.getElementById('papAuthors').value.trim();
+if(!title||!authors){showToast('Título y autores son obligatorios');return}
+PAPERS.unshift({id:Date.now(),title,authors,source:document.getElementById('papSource').value,url:document.getElementById('papUrl').value.trim()});
+['papTitle','papAuthors','papUrl'].forEach(id=>document.getElementById(id).value='');
+showToast('✓ Paper indexado');
+}
+renderAll(document.getElementById('searchInput').value,activeCat);
+document.getElementById('adminPanel').classList.remove('open');
+document.getElementById('adminFab').setAttribute('aria-expanded','false');
+}
+
+// ─── UPLOAD ───────────────────────────────────────────────────
+function handleFile(input){
+if(!input.files[0])return;
+const name=input.files[0].name;
+const fb=document.getElementById('uploadFeedback');
+fb.style.display='block';
+document.getElementById('uploadName').textContent=name;
+showToast('✓ Paper recibido — Pendiente de revisión');
+}
+// Drag & drop
+const uz=document.getElementById('uploadZone');
+uz.addEventListener('dragover',e=>{e.preventDefault();uz.style.borderColor='var(--lime)'});
+uz.addEventListener('dragleave',()=>{uz.style.borderColor=''});
+uz.addEventListener('drop',e=>{e.preventDefault();uz.style.borderColor='';const f=e.dataTransfer.files[0];if(f&&f.type==='application/pdf'){document.getElementById('uploadFeedback').style.display='block';document.getElementById('uploadName').textContent=f.name;showToast('✓ Paper recibido')}else showToast('Solo se aceptan archivos PDF')});
+
+// ─── NEWSLETTER ───────────────────────────────────────────────
+function subscribe(){
+const email=document.getElementById('nlEmail').value.trim();
+const msg=document.getElementById('nlMsg');
+if(!email||!email.includes('@')||!email.includes('.')){
+msg.textContent='Introduce un email válido';msg.className='nl-msg err';return;
+}
+document.getElementById('nlEmail').value='';
+msg.textContent='✓ Suscripción confirmada — Bienvenido/a a InflamLab';
+msg.className='nl-msg ok';
+setTimeout(()=>{msg.textContent='';msg.className='nl-msg'},4000);
+}
+document.getElementById('nlEmail').addEventListener('keydown',e=>{if(e.key==='Enter')subscribe()});
+
+// ─── COOKIES ──────────────────────────────────────────────────
+function acceptCookies(){
+document.getElementById('cookieBanner').classList.remove('show');
+localStorage.setItem('il_cookies','1');
+}
+
+// ─── TOAST ────────────────────────────────────────────────────
+let toastT;
+function showToast(msg){
+const t=document.getElementById('toast');
+t.textContent=msg;t.classList.add('show');
+clearTimeout(toastT);
+toastT=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────
+function observeReveal(){
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
+}
+
+// ─── COUNTER ANIMATION ────────────────────────────────────────
+function animCount(el,target){
+let n=0;const step=Math.max(1,Math.ceil(target/24));
+const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n;if(n>=target)clearInterval(t)},50);
+}
+
+// ─── HAMBURGER ────────────────────────────────────────────────
+document.getElementById('hamburger').addEventListener('click',function(){
+const open=document.getElementById('mobileMenu').classList.toggle('open');
+this.classList.toggle('open',open);
+this.setAttribute('aria-expanded',open);
+});
+function closeMenu(){
+document.getElementById('mobileMenu').classList.remove('open');
+document.getElementById('hamburger').classList.remove('open');
+document.getElementById('hamburger').setAttribute('aria-expanded','false');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+window.addEventListener('load',()=>{
+renderAll();
+observeReveal();
+// Loader out
+setTimeout(()=>{
+document.getElementById('loader').classList.add('out');
+animCount(document.getElementById('statPapers'),PAPERS.length||0);
+},1500);
+// Cookie banner
+if(!localStorage.getItem('il_cookies')){
+setTimeout(()=>document.getElementById('cookieBanner').classList.add('show'),2000);
+}
+// Mobile menu close on outside click
+document.addEventListener('click',e=>{
+if(!e.target.closest('nav')&&!e.target.closest('#mobileMenu'))closeMenu();
+if(!e.target.closest('#adminPanel')&&!e.target.closest('.admin-fab'))document.getElementById('adminPanel').classList.remove('open');
+});
+});
+</script>
+
+</body>
+</html>
