@@ -1070,3 +1070,78 @@ if(!e.target.closest('#adminPanel')&&!e.target.closest('.admin-fab'))document.ge
 
 </body>
 </html>
+<style>
+    /* 1. ARREGLO DEL RATÓN: Forzamos visibilidad en toda la web */
+    body, html, a, button, .card, .paper-item, [style*="cursor: none"] {
+        cursor: auto !important;
+    }
+    a, button, .card, .paper-item {
+        cursor: pointer !important;
+    }
+
+    /* 2. ELIMINACIÓN DEL BLOQUE DE SUBIDA */
+    input[type="file"], .upload-section, #uploadContainer, .admin-zone { 
+        display: none !important; 
+    }
+
+    /* 3. ESTILO DE LAS TRADUCCIONES */
+    .card-preview { 
+        background: rgba(255,255,255,0.03); border-left: 3px solid var(--lime); 
+        padding: 20px; margin: 20px 0; font-size: 0.95rem; line-height: 1.6; color: #ccc; 
+    }
+    .card-preview strong { color: var(--lime); display: block; margin-bottom: 5px; font-family: var(--ff-mono); font-size: 0.7rem; text-transform: uppercase; }
+    .translation-box { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #333; }
+</style>
+
+<script>
+    // 4. INYECCIÓN AUTOMÁTICA DE PAPERS TRADUCIDOS
+    const papersHTML = `
+        <div class="card paper-item">
+            <span class="card-cat">Stanford Medicine • Microbioma</span>
+            <h3 class="card-title">Déficit de metabolitos y Colitis Ulcerosa</h3>
+            <div class="card-preview">
+                <strong>🧪 El Hallazgo Científico:</strong>
+                Faltan bacterias que crean "grasas protectoras" en el colon de pacientes con EII.
+                <div class="translation-box">
+                    <strong>🧬 Traducción:</strong> Tu intestino está irritado porque le falta una "grasa" natural que deberían fabricar tus bacterias. El futuro es reponer esa grasa directamente para calmar el brote.
+                </div>
+            </div>
+            <a href="https://med.stanford.edu/news/all-news/2020/03/gut-microbe-metabolite-shortage-may-cause-ibd-inflammation.html" target="_blank" class="btn btn-outline" style="font-size: 0.6rem; border:1px solid #333; padding:5px; display:inline-block; margin-top:10px;">Ver Fuente: Stanford</a>
+        </div>
+
+        <div class="card paper-item">
+            <span class="card-cat">Harvard / Nature • Genética</span>
+            <h3 class="card-title">El "Interruptor" de la Inflamación</h3>
+            <div class="card-preview">
+                <strong>🧪 El Hallazgo Científico:</strong>
+                Identificado el trozo de ADN que ordena al sistema inmune atacar el intestino.
+                <div class="translation-box">
+                    <strong>🧬 Traducción:</strong> Han encontrado el "botón" que activa tu enfermedad. Si logramos apagar solo ese botón, detendremos la inflamación sin dejarte sin defensas contra otras infecciones.
+                </div>
+            </div>
+            <a href="https://www.nature.com/articles/s41586-024-07501-4" target="_blank" class="btn btn-outline" style="font-size: 0.6rem; border:1px solid #333; padding:5px; display:inline-block; margin-top:10px;">Ver Fuente: Nature</a>
+        </div>
+    `;
+
+    // Buscamos el contenedor de papers y metemos el contenido nuevo
+    const container = document.getElementById('papersContainer') || document.querySelector('.main') || document.body;
+    if(container) {
+        // Buscamos si hay una zona de papers para sustituirla o simplemente la añadimos
+        container.innerHTML = papersHTML;
+    }
+
+    // 5. ACTUALIZAR CONTADORES
+    const stat = document.getElementById('statPapers') || document.querySelector('.stat-n');
+    if(stat) stat.innerText = "2";
+
+    // 6. BUSCADOR INTEGRADO
+    const searchInput = document.getElementById('searchInput');
+    if(searchInput) {
+        searchInput.addEventListener('keyup', () => {
+            let val = searchInput.value.toLowerCase();
+            document.querySelectorAll('.paper-item').forEach(c => {
+                c.style.display = c.innerText.toLowerCase().includes(val) ? "block" : "none";
+            });
+        });
+    }
+</script>
